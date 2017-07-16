@@ -159,7 +159,10 @@ _this.goDes = function(){
 
 ### [必胜客万圣节策划](http://zj.qq.com/money/ywl_game_halloween.htm)
 
+可扫码体验
+
 ![必胜客万圣节策划](readme-images/8.png "必胜客万圣节策划")
+
 
 这个项目的灵感也是来自之前有个很火的h5-[里约大冒险](http://d.news.163.com/active/2232636/olympic.html)，手动画一个小人，然后这个小人贯穿整个设定好的故事，然后故事中引导用户去画或者滑动屏幕，促使故事的行进。
 
@@ -170,7 +173,7 @@ _this.goDes = function(){
     * 根据画的图，生成一张图片
     * 动画节奏的把握
 
-前面两个的话，查看demo[draw_game/demo.html]
+前面两个的话，查看[demo](draw_game/demo.html)
 
 ```javascript
 //maxX,minX,maxY,minY用于生成图片 确定边界线
@@ -225,14 +228,12 @@ document.getElementById("draw_result1").setAttribute("src",photo.canvas.toDataUR
 
 ```
 
-然后动画的话，这里由于经验和时间的原因，没有找到一个更好的方式去控制动画，用了使用成本最低的css3和webkitAnimationEnd。
+然后动画的话，这里由于经验和时间的原因，没有找到一个更好的方式去控制动画，用了使用成本最低的`css3`和`webkitAnimationEnd`。
 
 
 ### [腾讯大浙网鸡年新春送福](http://mat1.gtimg.com/zj/yuwanli/dzw1702/product/index.html)
 
-![腾讯大浙网鸡年新春送福](readme-images/11.png "腾讯大浙网鸡年新春送福")
-
-![腾讯大浙网鸡年新春送福](readme-images/12.png "腾讯大浙网鸡年新春送福")
+![腾讯大浙网鸡年新春送福](readme-images/11.png "腾讯大浙网鸡年新春送福")![腾讯大浙网鸡年新春送福](readme-images/12.png "腾讯大浙网鸡年新春送福")
 
 这个项目不管是设计上还是制作上都花了很多功夫，领导放手让我们去玩创意，没太多约束，所以才有这个魔性的h5，不管是设计风格上还是音乐及配音上，都奔着魔性去了，说实话，这个h5，大家玩的都挺嗨的，作为开发，我尽量的去实现他们的魔性的需求。
 
@@ -302,6 +303,7 @@ mc.on("pinchstart", function(ev) {
 
 由于篇幅原因(其实就是写的太累了)，这边就不做展开讲这个h5了，大家有什么问题可以留言。
 
+===========================
 
 这个写起来是真的有点累啊，写了我整整一下午，毕竟都是去年的项目了，要边看边想然后写。所以readme文档还是在开发过程中，或结束不久就去写这个readme文档，效率会高很多。
 
