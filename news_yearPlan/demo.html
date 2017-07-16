@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>新闻中心年终策划</title>
+    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no,maximum-scale=1.0">
+    <script src="http://mat1.gtimg.com/zj/yuwanli/dzw1607/live/js/resize.min.js"></script>
+    <!--<link rel="stylesheet" href="css/style.css">-->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        @font-face {
+            /* font-properties */
+            font-family: myFont;
+        }
+        html {
+            position: relative;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="abs container" id="gameCon">
+
+    </div>
+    <script>
+        var jsonData = [
+            {
+                "x":57,
+                "y":77
+            }
+        ]
+    </script>
+    <script src="js/zeptoAll.min.js"></script>
+    <script src="js/phaser.js"></script>
+    <script>
+        var winWidth = window.innerWidth;
+        var winHeight = window.innerHeight;
+        var Game = {//游戏对象
+            init:function(){
+                var _this = this
+                _this.game = new Phaser.Game(winWidth, winHeight, Phaser.AUTO, 'gameCon', { preload: _this.preload, create: _this.create, update: _this.update });
+            },
+            preload:function(){
+                var _this = this
+                _this.diceCan = true; //初始化骰子（骰子可扔）
+                _this.game.load.image('bg', 'images/repeat.jpg');
+                _this.game.load.spritesheet("dice","images/dice_group.png",50,50,10);
+                _this.game.load.spritesheet("player","images/player.png",82,108,8);
+                _this.game.load.image("background","images/background.png")
+            },
+            create:function(){
+                var _this = this
+                _this.game.physics.startSystem(Phaser.Physics.ARCADE);
+                _this.game.world.setBounds(0,0,winWidth,0.82*winWidth*193/52+0.16*winWidth)
+                _this.game.physics.arcade.gravity.y =200;
+                _this.bg = _this.game.add.tileSprite(0, 0, winWidth, 0.82*winWidth*193/52+0.16*winWidth, 'bg');
+//                _this.bg.fixedToCamera = true
+                _this.background = _this.game.add.image(0.10*winWidth,0.08*winWidth,'background');
+                _this.background.width = 0.82*winWidth;
+                _this.background.height = 0.82*winWidth*193/52;
+                _this.dice = _this.game.add.sprite(30,450,"dice",4);
+
+//                _this.dice.frame= 1
+//                console.log(_this.dice.frame)
+                _this.game.physics.arcade.enable(_this.dice);
+
+                _this.dice.body.collideWorldBounds = true;
+                _this.dice.body.bounce.set(0.5);
+                _this.dice.inputEnabled = true;
+                _this.dice.body.fixedRotation = true;
+                _this.dice.animations.add("diceRun",[0,1,2,3],20,true);
+                _this.launchFun = function(){
+                    var _this = this
+                    if(_this.diceCan){
+                        _this.dice.animations.play("diceRun");
+                        _this.dice.body.velocity.y = -100;
+                        _this.diceCan = false
+                    }else{
+                        _this.dice.animations.stop("diceRun");
+                        var random = parseInt(Math.random()*6)+4;
+//                        _this.dice = _this.game.add.sprite(30,450,"dice",random);
+                        _this.dice.frame = random
+                        _this.diceCan = true
+                    }
+                }
+                _this.dice.events.onInputDown.add(_this.launchFun,this)
+//                $("body").on("tap",function(){
+//                    _this.game.physics.p2.destroy()
+//                })
+                _this.player = _this.game.add.sprite(0.10*winWidth,0.08*winWidth+77/520*0.8125*winWidth,"player");
+                _this.player.anchor.set(0.6,1)
+                _this.player.animations.add("player_back",[0,1],5,true);
+                _this.player.animations.add("player_left",[2,3],5,true);
+                _this.player.animations.add("player_down",[4,5],5,true);
+                _this.player.animations.add("player_right",[6,7],5,true);
+                _this.player.animations.play("player_right");
+                _this.game.camera.follow(_this.player)
+                _this.circle1 = new Phaser.Circle(0.10*winWidth+57/520*0.8125*winWidth,0.08*winWidth+77/520*0.8125*winWidth,5);
+                _this.circle2 = new Phaser.Circle(0.10*winWidth+470/520*0.8125*winWidth,0.08*winWidth+77/520*0.8125*winWidth,5);
+                _this.circle3 = new Phaser.Circle(0.10*winWidth+470/520*0.8125*winWidth,0.82*winWidth*193/52+0.16*winWidth,5);
+                console.log(this.circle2)
+
+                var tween1 = _this.game.add.tween(_this.player).to({ x: this.circle2.x }, 4000, Phaser.Easing.Linear.None, true, 0, 0);
+                var tween2 = _this.game.add.tween(_this.player).to({ y: this.circle3.y }, 4000, Phaser.Easing.Linear.None, false, 0, 0);
+                tween1.onComplete.add(function(){_this.player.animations.play("player_down");},this)
+                tween1.chain(tween2)
+//                _this.game.add.tween(_this.player).to({ x: this.circle2.x }, 4000, Phaser.Easing.Linear.None, true, 0, 0);
+            },
+            update:function(){
+                var _this = this
+                _this.game.debug.geom(_this.circle1,'#a00');
+                _this.game.debug.geom(_this.circle2,'#a00');
+                _this.game.debug.geom(_this.circle3,'#a00');
+//                console.log(_this.dice)
+            }
+
+
+        }
+
+        var Dice = {
+
+        }
+        $(function(){
+            Game.init()
+        })
+    </script>
+</body>
+</html>

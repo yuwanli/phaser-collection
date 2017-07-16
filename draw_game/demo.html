@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>drawGame_demo</title>
+    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <script src="js/phaser.js" type="text/javascript"></script>
+    <style>
+        *{
+            margin: 0 ;
+            padding: 0;
+        }
+        html,body{
+            position: relative;
+            height: 100%;
+            overflow: hidden;
+            background-color: #3433bb;
+        }
+        #img{
+            position: absolute;
+            left: 0;
+            top: 0;
+        //background-color: #000;
+            -webkit-animation: run 0.2s ease infinite;
+        }
+
+        .butt{
+            position: absolute;
+            left: 50%;
+            bottom: 5%;
+            -webkit-transform: translateX(-50%);
+        }
+        @-webkit-keyframes run {
+            0%{
+                -webkit-transform: skewX(1deg) scaleY(1);
+            }
+            80%{
+                -webkit-transform: skewX(2deg) scaleY(1.02);
+            }
+            100%{
+                -webkit-transform: skewX(1deg) scaleY(1);
+            }
+
+        }
+    </style>
+</head>
+<body>
+<img src="" id="img" alt=""/>
+<img src="images/spacebar.png" class="butt" id="sure" alt=""/>
+<div id="phaser-example"></div>
+<script>
+    var winWidth = window.innerWidth;
+    var winHeight = window.innerHeight;
+    var game = new Phaser.Game(
+            winWidth,
+            winHeight,
+            Phaser.CANVAS,
+            'phaser-example',
+            { preload: preload, create: create, update: update, render: render },
+            true
+    );
+    function preload() {
+        game.load.spritesheet('centroid', 'images/centroid.png', 16, 16);
+        game.load.image('button', 'images/spacebar.png');
+        game.load.image('pic', 'images/devilstar_demo_download_disk.png');
+        game.load.image('new', 'images/spacebar.png');
+    }
+    var points = [];
+    var currentPoint;
+    var line;
+    var bmd;
+    var beforeX;
+    var beforeY;
+    var flag = true;
+    var init = true;
+    var minX = 0;
+    var minY = 0;
+    var maxX = 0;
+    var maxY = 0;
+    var rec;
+    var button;
+    var bmd_draw;
+    var group1;
+    var group2;
+    var clickFlag = false;
+    function create() {
+        group1 = game.add.group();
+        group2 = game.add.group();
+//        game.stage.backgroundColor = game.transparent;
+        currentPoint = game.add.image(10, 10, 'centroid');
+        currentPoint.anchor.set(0.5);
+        currentPoint.alpha = 0.5;
+        bmd = game.make.bitmapData(winWidth, winHeight);
+        group1.add(currentPoint);
+        bmd.addToWorld();
+        stars = [];
+        game.input.addMoveCallback(paint, this);
+        game.input.onUp.add(onUp, this);
+        rec = new Phaser.Rectangle(0, 0, 0, 0);
+    }
+    document.getElementById("sure").addEventListener("touchstart",sure);
+    function sure(e){
+        game.input.deleteMoveCallback(paint,this);
+        clickFlag = true;
+        bmd_draw = game.make.bitmapData(maxX-minX, maxY-minY);
+        var photo = bmd_draw.copy(bmd, minX,minY,  maxX-minX, maxY-minY,0,0,  maxX-minX, maxY-minY);
+//        bmd_draw.addToWorld();
+//        game.add.image(0, 0, photo);
+
+        var sprite = { x: 0, y: 0 };
+        var tween = game.add.tween(sprite).to( { x: 2, y: 2 }, 300, "Linear", true, 0, -1, true);
+        waveform = tween.generateData(100);
+
+        xl = waveform.length - 1;
+        yl = waveform.length - 1;
+        var sprites = game.add.spriteBatch();
+
+
+
+        var picWidth = photo.imageData.width;
+        var picHeight = photo.imageData.height;
+//        photo.texture.height = picHeight;
+//        console.log(photo.texture.height);
+//        console.log(photo);
+//        var star = game.add.sprite(100, 0,photo.texture);
+//        star.crop(new Phaser.Rectangle(0, 0, picWidth,10));
+//        var star = game.add.sprite(100, 10,photo.texture);
+//        star.crop(new Phaser.Rectangle(0,10, picWidth,10));
+//        console.log(photo.texture.height);
+//        console.log(photo);
+//        group1.add(game.make.sprite(0, 0, photo.texture));
+//        group1.add(game.make.sprite(100, 200, photo.texture));
+//        group1.add(game.make.sprite(100, 300, "pic"));
+//        console.log(game.make.sprite(100, 200, photo));
+//        console.log(game.make.sprite(100, 300, "pic"));
+
+        var ys = 5;
+
+        for(var y = 0; y < Math.floor(picHeight/ys)+1; y++){
+            bmd_draw = game.make.bitmapData(maxX-minX, maxY-minY);
+            var photo = bmd_draw.copy(bmd, minX,minY,  maxX-minX, maxY-minY,0,0,  maxX-minX, maxY-minY);
+            var star = game.add.sprite(minX, minY+(y * ys),photo.texture);
+            star.crop(new Phaser.Rectangle(0, y*ys, picWidth,ys));
+            star.ox = star.x;
+            star.oy = star.y;
+            star.cx = game.math.wrap(y, 0, xl);
+            star.cy = y;
+            star.anchor.set(0,0);
+            sprites.addChild(star);
+            stars.push(star);
+        }
+        bmd.destroy();
+//        for (var y = 0; y < Math.floor(picHeight/ys); y++)
+//        {
+//            var star = game.add.sprite(100, 200 + (y * ys), "pic");
+//
+//            star.crop(new Phaser.Rectangle(0, y * ys, picWidth, ys));
+//            star.ox = star.x;
+//            star.oy = star.y;
+//
+//            star.cx = game.math.wrap(y, 0, xl);
+//            star.cy = y;
+//
+//            star.anchor.set(0.5);
+////            sprites.addChild(star);
+////
+////            stars.push(star);
+//        }
+
+//        shadow = game.add.sprite(0, 0, photo);
+////        shadow.anchor.set(0.5);
+//        shadow.tint = 0x000000;
+//        shadow.alpha = 0.6;
+        document.getElementById("img").setAttribute("src",photo.canvas.toDataURL());
+    }
+    function onUp(e){
+        flag = true;
+        rec = new Phaser.Rectangle(minX, minY, maxX-minX, maxY-minY);
+    }
+    function paint(pointer,x,y) {
+//        console.log(pointer);
+//        console.log("isDown:"+pointer.isDown+" "+"isMouse:"+pointer.isMouse+" "+"isUp:"+pointer.isUp);
+        if(flag){
+            beforeX=x;
+            beforeY=y;
+            flag = false;
+        }
+        if(init){
+            maxX = x;
+            minX = x;
+            maxY = y;
+            minY = y;
+            init = false;
+        }
+        if(x<100){
+            beforeX=x;
+            beforeY=y;
+            return;
+        }
+        bmd.line(beforeX, beforeY, x, y, '#ffffff');
+        beforeX=x;
+        beforeY=y;
+
+        if(game.input.activePointer.position.x>maxX){
+            maxX = x;
+        }
+        if(game.input.activePointer.position.x<minX){
+            minX = x;
+        }
+        if(game.input.activePointer.position.y>maxY){
+            maxY = y;
+        }
+        if(game.input.activePointer.position.y<minY){
+            minY = y;
+        }
+    }
+
+    function update() {
+        currentPoint.position.copyFrom(game.input.activePointer.position);
+//        if(clickFlag){
+//            return;
+//        }
+        for (var i=0, len = stars.length; i < len; i++)
+        {
+            stars[i].x = stars[i].ox + waveform[stars[i].cx].x;
+            stars[i].y = stars[i].oy + waveform[stars[i].cy].y;
+
+            stars[i].cx++;
+
+            if (stars[i].cx > xl)
+            {
+                stars[i].cx = 0;
+            }
+
+            stars[i].cy++;
+
+            if (stars[i].cy > yl)
+            {
+                stars[i].cy = 0;
+            }
+
+        }
+
+    }
+
+    function render() {
+//        game.debug.rectangle(rec, '#ffffff', false);
+//        game.world.forEachAlive(function(child) {
+//            game.debug.text(Phaser.Math.roundTo(child.x, 0) + "," + Phaser.Math.roundTo(child.y, 0), child.x - 10, child.y + 25, "#ff1e00", "12px Courier");
+//        });
+
+    }
+</script>
+</body>
+</html>

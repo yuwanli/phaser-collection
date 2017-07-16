@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>上虞美食节</title>
+    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <style>
+        *{
+            margin: 0 ;
+            padding: 0;
+        }
+        html,body{
+            position: relative;
+            height: 100%;
+            overflow: hidden;
+            width: 100%;
+        }
+        .container{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            background-color: #FC9062;
+            background-image: url(http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/food.jpg);
+            background-size: 100% auto;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .btn{
+            position: absolute;
+            width: 80%;
+            left: 10%;
+            top: 50%;
+            -webkit-transform: translateY(-45%);
+        }
+    </style>
+    <script type="text/javascript">
+        var shareData = {
+            title:'上虞美食节',
+            desc: '上虞美食节',
+            link: window.location.href,
+            imgUrl: 'http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/share.jpg'
+        };
+    </script>
+</head>
+<body>
+<!-- 全站流量统计代码 开始 -->
+<!--pgv 20130819 v1.0.0-->
+<script language="javascript" src="http://pingjs.qq.com/pingV3_1_5.js"></script>
+<script>
+    /*
+     Austinjin 20130528 灰度comic
+     Austinjin 20130628 修复bug 灰度comic
+     Austinjin 20130725 新增ent
+     Austinjin 20130819 全站上线
+     全站pgv细分并统一
+     L=栏目信息: L.栏目.二级栏目.三级栏目
+     Z=专题信息：Z.栏目.二级栏目.三级栏目.专题名
+     W=文章类型：W.数字
+     M=模板类型：M.数字
+     P=频道信息：P.频道名
+     */
+    if(window['ARTICLE_INFO'] && window['ARTICLE_INFO']['catalog_full']){
+        function newPgvDetail(){
+            var catalogPath = ARTICLE_INFO.catalog_full.toString().replace(/-/g,".");
+            if(ARTICLE_INFO.topic.name.length>0){var L = "L.",Z = "Z." + catalogPath + "." + ARTICLE_INFO.topic.name;}else{var L = "L." + catalogPath,Z = "Z.";}
+            var W = "W." + ARTICLE_INFO.type,M = "M." + ARTICLE_INFO.tpl.type + ARTICLE_INFO.tpl.stype,P = "P." + ARTICLE_INFO.site,pgvInfo = L + "_" + Z + "_" + W + "_" + M + "_" + P;
+            if(typeof(pgvMain) == 'function'){if(typeof(pgvInfo) != 'undefined'){pgvMain({pgUserType:pgvInfo});}}
+        }newPgvDetail();}
+    else if(typeof(pgvMain) == 'function'){if(typeof(whatCatalog) != 'undefined'){pvCSTM = whatCatalog;pgvMain();}else{pgvMain();}}
+</script>
+
+<!--pgv 20130819 v1.0.0 end-->
+<!--[if !IE]>|xGv00|3c1dbc0846d542b46fa617f906aeb77f<![endif]-->
+<script language="javascript" src="http://pingjs.qq.com/ping.js"></script>
+<script language="javascript"> if(typeof(pgvMain) == 'function') { pvCSTM = "fashion"; pgvMain(); } </script>
+
+<!--普通专题pgv统计代码请放在<body>标签下方,重大项目报道及频道首页改版pgv统计代码放于首屏后.-->
+<!-- 全站流量统计代码 结束 -->
+<div class="container">
+    <img src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/card_btn.png" class="btn" id="btn" alt=""/>
+</div>
+<script src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/js/zeptoAll.min.js" type="text/javascript"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+    var cardid;
+    var nonce_str;
+    var timestamp;
+    var signature;
+    $(function(){
+        jssdkIndex();
+        function jssdkIndex(){
+            $.ajax({
+                url:'http://wx.zjqq.mobi/h5card/index',
+                data:{id:getPar(),url:window.location.href},
+                type:'POST',
+                dataType:'json',
+                success:function(res){
+                    alert(res);
+                    if(res.state == 'ok'){
+                        wx.config({
+                            debug: false,
+                            appId: res.data.signPackage.appId,
+                            timestamp: res.data.signPackage.timestamp,
+                            nonceStr: res.data.signPackage.nonceStr,
+                            signature: res.data.signPackage.signature,
+                            jsApiList: [
+                                'onMenuShareTimeline',
+                                'onMenuShareAppMessage',
+                                'onMenuShareQQ',
+                                'onMenuShareWeibo',
+                                'onMenuShareQZone',
+                                'checkJsApi',
+                                'addCard'
+                            ]
+                        });
+                        wx.ready(function () {
+                            wx.onMenuShareAppMessage(shareData);
+                            wx.onMenuShareTimeline(shareData);
+                            wx.onMenuShareQQ(shareData);
+                            wx.onMenuShareWeibo(shareData);
+                            wx.onMenuShareQZone(shareData);
+                        });
+                        cardid = res.data.signCard.cardId;
+                        nonce_str = res.data.signCard.nonce_str;
+                        timestamp = res.data.signCard.timestamp;
+                        signature = res.data.signCard.signature;
+                    } else {
+                        alert(res.msg)
+                    }
+                }
+            });
+        }
+
+    });
+    //获取get参数id
+    function getPar(){
+        //获取当前URL
+        var local_url = document.location.href;
+        var get_par = local_url.lastIndexOf("#")>-1?local_url.substring(local_url.lastIndexOf("#")+1):"";
+        return get_par;
+    }
+
+</script>
+<script>
+    $(function(){
+        $('#btn').click(function(){
+            wx.addCard({
+                cardList: [
+                    {
+                        cardId: cardid,
+                        cardExt: '{"nonce_str":"'+nonce_str+'","timestamp":"'+timestamp+'","signature":"'+signature+'"}'
+                    }
+                ],
+                success: function (res) {
+                    alert('已添加卡券');
+                    //alert('已添加卡券：' + JSON.stringify(res.cardList));
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

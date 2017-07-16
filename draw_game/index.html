@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>必胜客爱分享，拉上朋友一起来领券吧</title>
+    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <script src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/js/resize.min.js"></script>
+    <!--<link rel="stylesheet" href="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/css/style.min.css"/>-->
+    <link rel="stylesheet" href="css/style.css"/>
+    <script src="http://mat1.gtimg.com/zj/yuwanli/thanksgiving/js/pace.min.js"></script>
+    <script type="text/javascript">
+        var shareData = {
+            title:'必胜客爱分享，拉上朋友一起来领券吧 ',
+            desc: '游戏玩的好，比萨吃到饱！',
+            link: window.location.href,
+            imgUrl: 'http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/share.jpg'
+        };
+    </script>
+</head>
+<body>
+<div class="audioCon playingZ">
+    <audio src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/Halloween.mp3" id="audio" autoplay loop="loop"></audio>
+    <div class="abs play-pauseZ">
+        <p class="playZ"></p>
+        <p class="pauseZ"></p>
+        <p class="loadingZ"></p>
+    </div>
+    <div class="scrubberZ">
+        <div class="progressZ"></div>
+        <div class="loadedZ"></div>
+    </div>
+    <div class="timeZ"><em class="playedZ"></em>/<strong class="durationZ"></strong>
+    </div>
+</div>
+<div class="container ">
+    <div class="abs page page_cover">
+        <div class="abs star" id="star">
+        </div>
+        <div class="abs moon">
+            <img src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/cover_moon.png" class="layer" alt=""/>
+            <img src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/cover_text.png" class="abs text" alt=""/>
+            <img src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/cover_bird1.png" class="abs bird bird1" alt=""/>
+            <img src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/cover_bird2.png" class="abs bird bird2" alt=""/>
+            <img src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/cover_bird3.png" class="abs bird bird3" alt=""/>
+            <img src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/logo.png" class="abs logo" alt=""/>
+        </div>
+        <div class="abs tree_left">
+            <img src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/cover_tree_left.png" class="layer" alt=""/>
+        </div>
+        <div class="abs tree_right">
+            <img src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/cover_tree_right.png" class="layer"/>
+        </div>
+        <div class="abs bottom">
+            <img src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/cover_bottom.png" class="layer" alt=""/>
+            <img src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/start.png" class="abs start" alt=""/>
+            <div class="abs light light1"></div>
+            <div class="abs cat">
+                <img src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/cover_cat.png" class="layer" alt=""/>
+                <div class="abs light light2"></div>
+            </div>
+        </div>
+    </div>
+    <div class="abs page page_game" id="game">
+
+        <div class="abs road"></div>
+        <img src="" id="draw_result" class="abs result" alt=""/>
+        <img src="" id="draw_result1" class="abs move" alt=""/>
+        <span class="abs  btn sure" id="sure" data-id="sure">画完了</span>
+        <span class="abs  btn again">重画</span>
+        <div class="abs stage stage1"  id="draw">
+            <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/game_tree_cat.png" class="abs tree_cat" alt=""/>
+
+            <div class="abs text text1"></div>
+            <div class="abs text text2"></div>
+            <p class="abs control tips">请在方框内画一个魔法师</p>
+            <div class="abs control drawCon"></div>
+
+            <div class="abs control cover"></div>
+        </div>
+        <div class="abs stage stage2 ">
+            <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/castle.png" class="abs castle" alt=""/>
+            <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/game_bat.png" class="abs bat" alt=""/>
+            <div class="abs batCon">
+                <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/game_bat_base.png" class="layer base" alt=""/>
+                <div class="abs get">
+                    <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/game_get_line.png"  class="layer" alt=""/>
+                    <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/game_bat_swing.png" class="abs swing" alt=""/>
+                </div>
+            </div>
+            <div class="abs text text1"></div>
+            <div class="abs text text2"></div>
+            <div class="abs text text3"></div>
+            <p class="abs tips">请在魔法师手上画一把宝剑</p>
+        </div>
+        <div class="abs stage stage3">
+            <div class="abs text text1"></div>
+            <div class="abs text text2"></div>
+            <p class="abs tips">请在魔法师手上画一个火球</p>
+            <div class="abs redCon"></div>
+            <div class="abs spiderCon">
+                <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/game_spider_web.png" class="layer base" alt=""/>
+                <div class="abs spider">
+                    <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/game_spider.png" class="layer" alt=""/>
+                    <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/game_spider_died.png" class="abs died" alt=""/>
+                    <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/game_get_line.png" class="abs get" alt=""/>
+                    <div class="abs line"></div>
+                </div>
+
+            </div>
+        </div>
+        <div class="abs stage stage4">
+            <div class="abs text text1"></div>
+            <div class="abs text text2"></div>
+            <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/game_photo.png" class="abs photo" alt=""/>
+            <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/game_flower.png" class="abs flower" alt=""/>
+        </div>
+        <div class="abs stage stage5">
+            <div class="abs text text1"></div>
+            <div class="abs text text2"></div>
+            <div class="abs text text3"></div>
+            <div class="abs whiteCon"></div>
+            <p class="abs tips">请画一道闪电</p>
+            <div class="abs devilCon">
+                <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/game_devil.png" class="layer base" alt=""/>
+                <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/game_devil_angle.png" class="abs angle" alt=""/>
+                <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/game_get_line.png" class="abs get" alt=""/>
+            </div>
+        </div>
+        <div class="abs stage stage6">
+            <div class="abs text text1"></div>
+            <div class="abs text text2"></div>
+            <div class="abs text text3"></div>
+            <p class="abs tips">请在魔法师手上画一把弓</p>
+            <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/game_photo2.png" class="abs photo" alt=""/>
+            <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/game_arrow.png" class="abs arrow" alt=""/>
+            <div class="abs witchCon">
+                <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/game_witch.png" class="layer base" alt=""/>
+            </div>
+            <div class="abs fingerCon">
+                <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/game_witch_finger.png" class="layer" alt=""/>
+                <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/game_get_line.png" class="abs get" alt=""/>
+            </div>
+        </div>
+        <div class="abs stage stage7">
+            <div class="abs getCon">
+                <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/game_bat_swing.png" class="abs swing" alt=""/>
+                <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/game_spider_died.png" class="abs spider" alt=""/>
+                <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/game_devil_angle.png" class="abs angle" alt=""/>
+                <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/game_witch_finger.png" class="abs witch" alt=""/>
+                <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/game_btn_zh.png" class="abs zh" alt=""/>
+            </div>
+            <div class="abs resultCon">
+                <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/result1.png" class="abs base result1" alt=""/>
+                <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/result2.png" class="abs base result2" alt=""/>
+                <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/result3.png" class="abs base result3" alt=""/>
+                <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/result4.png" class="abs base result4" alt=""/>
+                <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/result1_color.png" class="abs color result1" data-index="0" alt=""/>
+                <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/result2_color.png" class="abs color result2" data-index="1" alt=""/>
+                <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/result3_color.png" class="abs color result3" data-index="2" alt=""/>
+                <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/result4_color.png" class="abs color result4" data-index="3" alt=""/>
+            </div>
+            <div class="abs btnGroup">
+                <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/btn_more.png" class="abs button more" data-id="more" alt=""/>
+                <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/btn_share.png" class="abs button share" data-id="share" alt=""/>
+                <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/btn_detail.png" class="abs button detail" data-id="detail" alt=""/>
+                <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/btn_card.png" class="abs button card" data-id="card" alt=""/>
+            </div>
+            <div class="abs swiperCon">
+                <div class="abs close"></div>
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/result1_color.png" class="abs food" alt=""/>
+                            <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/result1_text.png" class="abs text" alt=""/>
+                        </div>
+                        <div class="swiper-slide">
+                            <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/result2_color.png" class="abs food" alt=""/>
+                            <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/result2_text.png" class="abs text" alt=""/>
+                        </div>
+                        <div class="swiper-slide">
+                            <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/result3_color.png" class="abs food" alt=""/>
+                            <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/result3_text.png" class="abs text" alt=""/>
+                        </div>
+                        <div class="swiper-slide">
+                            <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/result4_color.png" class="abs food" alt=""/>
+                            <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/result4_text.png" class="abs text" alt=""/>
+                        </div>
+                    </div>
+                    <div class="abs swiper-pagination"></div>
+                    <div class="abs col swiper-button-prev"></div>
+                    <div class="abs col swiper-button-next"></div>
+                </div>
+            </div>
+            <div class="abs shareCon">
+                <div class="abs imgCon">
+                    <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/share_arrow.png" class="layer base" alt=""/>
+                    <img data-src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/images/share_text.png" class="abs text" alt=""/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/js/zeptoAll.min.js"></script>
+<script src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/js/phaser.min.js" type="text/javascript"></script>
+<script src="http://mat1.gtimg.com/zj/yuwanli/common/swiper/swiper.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="http://mat1.gtimg.com/zj/yuwanli/dzw1609/draw/js/script2.min.js" charset="utf-8"></script>
+<!--<script src="js/script.js"></script>-->
+<!-- 全站流量统计代码 开始 -->
+<!--pgv 20130819 v1.0.0-->
+<script language="javascript" src="http://pingjs.qq.com/pingV3_1_5.js"></script>
+<script>
+    /*
+     Austinjin 20130528 灰度comic
+     Austinjin 20130628 修复bug 灰度comic
+     Austinjin 20130725 新增ent
+     Austinjin 20130819 全站上线
+     全站pgv细分并统一
+     L=栏目信息: L.栏目.二级栏目.三级栏目
+     Z=专题信息：Z.栏目.二级栏目.三级栏目.专题名
+     W=文章类型：W.数字
+     M=模板类型：M.数字
+     P=频道信息：P.频道名
+     */
+    if(window['ARTICLE_INFO'] && window['ARTICLE_INFO']['catalog_full']){
+        function newPgvDetail(){
+            var catalogPath = ARTICLE_INFO.catalog_full.toString().replace(/-/g,".");
+            if(ARTICLE_INFO.topic.name.length>0){var L = "L.",Z = "Z." + catalogPath + "." + ARTICLE_INFO.topic.name;}else{var L = "L." + catalogPath,Z = "Z.";}
+            var W = "W." + ARTICLE_INFO.type,M = "M." + ARTICLE_INFO.tpl.type + ARTICLE_INFO.tpl.stype,P = "P." + ARTICLE_INFO.site,pgvInfo = L + "_" + Z + "_" + W + "_" + M + "_" + P;
+            if(typeof(pgvMain) == 'function'){if(typeof(pgvInfo) != 'undefined'){pgvMain({pgUserType:pgvInfo});}}
+        }newPgvDetail();}
+    else if(typeof(pgvMain) == 'function'){if(typeof(whatCatalog) != 'undefined'){pvCSTM = whatCatalog;pgvMain();}else{pgvMain();}}
+</script>
+
+<!--pgv 20130819 v1.0.0 end-->
+<!--[if !IE]>|xGv00|3c1dbc0846d542b46fa617f906aeb77f<![endif]-->
+<script language="javascript" src="http://pingjs.qq.com/ping.js"></script>
+<script language="javascript"> if(typeof(pgvMain) == 'function') { pvCSTM = "fashion"; pgvMain(); } </script>
+
+<!--普通专题pgv统计代码请放在<body>标签下方,重大项目报道及频道首页改版pgv统计代码放于首屏后.-->
+<!-- 全站流量统计代码 结束 -->
+</body>
+</html>

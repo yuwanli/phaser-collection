@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title    </title>
+    <script>var ratio;</script>
+    <script src="js/resize.min.js"></script>
+    <style>
+        *{margin: 0;padding: 0;}
+    </style>
+</head>
+<body>
+<div class="game"></div>
+<script src="js/phaser.js"></script>
+<script>
+    var winWidth = window.innerWidth
+    var winHeight = window.innerHeight
+    var player;
+    var point;
+    var m;
+    var game = new Phaser.Game(winWidth, winHeight, Phaser.AUTO, 'game', { preload: preload, create: create, update: update ,render:render},true);
+    function preload(){
+        game.load.spritesheet("player","images/player.png",82,108,8);
+        game.load.audio('bgAudio', ['source/bg.mp3']);
+    }
+    function create(){
+        game.physics.startSystem(Phaser.Physics.ARCADE);
+        game.stage.backgroundColor = "#aa0000";
+        player = game.add.sprite(100,0.77*ratio,"player",0);
+        player.anchor.set(0.6,0.8);
+//        player.width = 0.82*ratio;
+//        player.height = 1.08*ratio;
+//        point = new Phaser.Circle(0.57*ratio,0.77*ratio,10)
+        point = game.add.sprite(100,0.77*ratio,"player",0)
+        point.width = 10;
+        point.height = 10;
+        game.physics.arcade.enable([player,point]);
+
+        player.body.setSize(player.width,1,0,-0.2*player.height)
+        player.body.velocity.y=100
+//        point.body.velocity.x=100
+
+        m = game.add.audio("bgAudio")
+        m.play()
+
+    }
+    function update(){
+        game.physics.arcade.collide(player,point,collisionHandle,null,this)
+    }
+    function collisionHandle(){
+        player.body.velocity.y=0
+        point.body.velocity.y=0
+    }
+    function render(){
+        game.debug.body(player);
+        game.debug.body(point);
+        game.debug.geom(point,"#aa0000");
+    }
+</script>
+</body>
+</html>

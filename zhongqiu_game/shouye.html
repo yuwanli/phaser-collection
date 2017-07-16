@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="http://zj.qq.com/css/css/dzcss2016.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+</head>
+<body>
+<script src="js/jquery-2.2.3.min.js"></script>
+<script type="text/javascript">
+    var iflagx=false;
+    $(function(){
+        $('.letou li').on('click',function(){
+
+            if(!iflagx){ return false;}
+            $('.letou li').removeClass('act');
+            $(this).addClass('act');
+
+            var _index = $(this).index();
+            $('.ltresult').hide();
+            $('#dlt'+_index).show();
+        });
+    });
+
+    StandardTaxRate();
+    function StandardTaxRate()
+    {
+        $.ajax({
+            url: "http://www.zjlottery.com/gtxml/",
+            dataType: 'xml',
+            beforeSend:function(){ $('.ltresult').hide(); $('#loading').show(); iflagx=false; },
+            complete:function(){ $('#loading').hide(); $('#dlt0').show(); iflagx=true; },
+            success: function(xml)
+            {
+                //console.log(xml)
+                if(!xml){ console.log(2)}
+                $(xml).find("node").each(function(i)
+                {
+                    var _index = $(this).index();
+                    var _issue = $(this).children("issue").text();
+                    var _winnumber = $(this).children("winnumber").text();
+
+                    ///后续操作。。。
+
+                    if(i == 0 ){
+                        var arrnum = _winnumber.split('+');
+                        var num1 = arrnum[0].split(' ');
+                        var num2 = arrnum[1].split(' ');
+                        $('#dlt0 p span').text(_issue);
+                        $('#dlt0 li').eq(0).text(num1[0]);
+                        $('#dlt0 li').eq(1).text(num1[1]);
+                        $('#dlt0 li').eq(2).text(num1[2]);
+                        $('#dlt0 li').eq(3).text(num1[3]);
+                        $('#dlt0 li').eq(4).text(num1[4]);
+                        $('#dlt0 li').eq(5).text(num2[0]);
+                        $('#dlt0 li').eq(6).text(num2[1]);
+                    }
+
+                    if( i == 1){
+                        var arrnum1 = _winnumber.split('+');
+                        var num1a = arrnum1[0].split(' ');
+                        var num2a = arrnum1[1].split(' ');
+                        $('#dlt1 p span').text(_issue);
+                        $('#dlt1 li').eq(0).text(num1a[0]);
+                        $('#dlt1 li').eq(1).text(num1a[1]);
+                        $('#dlt1 li').eq(2).text(num1a[2]);
+                        $('#dlt1 li').eq(3).text(num1a[3]);
+                        $('#dlt1 li').eq(4).text(num1a[4]);
+                        $('#dlt1 li').eq(5).text(num1a[5]);
+                        $('#dlt1 li').eq(6).text(num2a[0]);
+                    }
+
+                    if( i == 2){
+                        var arrnum2 = _winnumber.split(' ');
+                        $('#dlt2 p span').text(_issue);
+                        $('#dlt2 li').eq(0).text(arrnum2[0]);
+                        $('#dlt2 li').eq(1).text(arrnum2[1]);
+                        $('#dlt2 li').eq(2).text(arrnum2[2]);
+                        $('#dlt2 li').eq(3).text(arrnum2[3]);
+                        $('#dlt2 li').eq(4).text(arrnum2[4]);
+                    }
+
+                    if( i == 3){
+                        var arrnum3 = _winnumber.split(' ');
+                        $('#dlt3 p span').text(_issue);
+                        $('#dlt3 li').eq(0).text(arrnum3[0]);
+                        $('#dlt3 li').eq(1).text(arrnum3[1]);
+                        $('#dlt3 li').eq(2).text(arrnum3[2]);
+                    }
+
+                    if( i == 4){
+                        var arrnum4 = _winnumber.split(' ');
+                        $('#dlt4 p span').text(_issue);
+                        $('#dlt4 li').eq(0).text(arrnum4[0]);
+                        $('#dlt4 li').eq(1).text(arrnum4[1]);
+                        $('#dlt4 li').eq(2).text(arrnum4[2]);
+                        $('#dlt4 li').eq(3).text(arrnum4[3]);
+                        $('#dlt4 li').eq(4).text(arrnum4[4]);
+                    }
+
+
+                });
+            }
+        });
+    }
+</script>
+<style>
+    .letou{ border-bottom: 1px solid #92b6f2; }
+    .letou:after{ clear:both; content:''; display: block}
+    .letou li{ width: 52px; height: 39px; line-height: 38px; text-align: center; float: left; border: 1px solid #eeeeee; border-bottom:none; font-size: 14px; cursor: pointer}
+    .letou li.act{ color: #ffffff; background: #92b6f2; border: 1px solid #92b6f2}
+    .ltresult{ font-size: 15px; display: none}
+    .ltresult p { line-height: 28px;padding: 15px 0 5px; }
+    .ltresult p span{ font-size: 12px;}
+    .ltresult li{ font-size: 14px; line-height: 35px; width: 35px; height: 35px; background: url("http://mat1.gtimg.com/zj/lucky/2015inter/images/lt1.jpg") no-repeat center; color: #ffffff; font-weight: bold; text-align: center; float: left; margin-right: 3px; }
+    .ltresult li.ltblue{ background: url("http://mat1.gtimg.com/zj/lucky/2015inter/images/lt2.jpg") no-repeat center}
+    .ltshow{ display: block}
+    .loading{width: 37px; height: 9px; background: url("http://mat1.gtimg.com/zj/test/loading.gif") center center no-repeat;  margin: 10px auto; overflow: hidden; }
+    .g20_cover{
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 0;
+        z-index: 100;
+    }
+</style>
+<!-- 浙江体彩开奖 S -->
+<div class="bgtpart" bosszone="baoguang" style="margin-top: 20px; position: relative">
+    <!--数据问题，临时加的图片-->
+    <img src="http://mat1.gtimg.com/zj/yuwanli/dzw1608/ticai.jpg" class="g20_cover" alt=""/>
+    <!--数据问题，临时加的图片-->
+    <div class="cover"></div>
+    <div class="btD_1">浙江体彩开奖<a href="http://www.zjlottery.com/" target="_blank" style="font-size: 12px; color: #000; float: right">[更多体彩信息]</a></div>
+    <ul class="letou">
+        <li class="act">大乐透</li>
+        <li>6+1</li>
+        <li>20选5</li>
+        <li>排列3</li>
+        <li>排列5</li>
+    </ul>
+
+    <div id="loading" class="loading"></div>
+    <div class="ltresult " id="dlt0">
+        <p>大乐透　第<span></span>期</p>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li class="ltblue"></li>
+            <li class="ltblue"></li>
+        </ul>
+    </div>
+
+    <div class="ltresult" id="dlt1">
+        <p>6+1　第<span></span>期</p>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li class="ltblue"></li>
+        </ul>
+    </div>
+
+    <div class="ltresult" id="dlt2">
+        <p>20选5　第<span></span>期</p>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+    <div class="ltresult" id="dlt3">
+        <p>排列3　第<span></span>期</p>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+    <div class="ltresult" id="dlt4">
+        <p>排列5　第<span></span>期</p>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+</div>
+<!-- 浙江体彩开奖 E -->
+</body>
+</html>

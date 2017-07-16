@@ -1,0 +1,78 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+body {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background-color: #474C6B;
+  color: #fff;
+  font-size: 0.1rem;
+  z-index: 10;
+  font-family: "Microsoft Yahei", sans-serif, "Helvetica Neue", Helvetica, Arial;
+}
+.container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+.container .game {
+  position: absolute;
+  width: 290px;
+  height: 200px;
+  left: 50%;
+  top: 10%;
+  margin-left: -145px;
+  border: 4px solid #fff;
+  box-sizing: border-box;
+}
+.abs{
+  position: absolute;
+}
+.layer{
+  display: block;
+  width: 100%;
+}
+.page{
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 10;
+
+}
+.white{
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+
+  background-color: #fff;
+  z-index: 100;
+  display: none;
+}
+.flash{
+  -webkit-transition: opacity 0.3s ease;
+  opacity: 0;
+}
+@-webkit-keyframes flash {
+  from{
+    -webkit-transform: scale(1);
+  }
+  50%{
+    -webkit-transform: scale(1.2);
+  }
+  to{
+    -webkit-transform: scale(1);
+  }
+}

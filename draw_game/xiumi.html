@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="x-rim-auto-match" content="none">
+    <meta id="metaDescription" name="description" content="">
+
+    <script>
+        document.documentElement.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+
+    <title>草稿</title>
+
+    <link rel="stylesheet" href="http://stc.xiumius.com/styles/app/reader/8197ec.paper.min.css">
+
+    <script id="__pre_data">
+        window.injectedData          = window.injectedData || {};
+        injectedData.SYSTEM_SETTINGS = {"templateRootPath":"http://sd.xiumius.com/tpls","addGAForShow":true};
+        injectedData.showInfo        = {"show_id":23258113,"type":2,"version":5,"title":"草稿","desc":null,"cover":null,"loading_icon":null,"show_data_name":"gaiU/c7eac62340b2581476b189793e0113e9","show_data_url":"http://sd.xiumius.com/xmi/pd/gaiU/c7eac62340b2581476b189793e0113e9.json?_ver=1475931759000","show_url":"http://r.xiumi.us/board/v5/2a4x3/23258113","no_logo":0,"no_advert":0,"freeshow":0,"traffic":885109,"points":1207,"history_hits":5,"cur_hits":3,"hit_count":8,"high_peak":50000,"created_at":"2016-10-08T12:02:37.000Z","updated_at":"2016-10-08T17:19:29.000Z","owner":{"nickname":"马小狗","avatar_url":"http://q.qlogo.cn/qqapp/101147695/2CEC937E97323E32ACB083C5C6B292BE/100","brand_name":null,"agreement_access":1,"level":1,"level_remain_life":0}};
+        injectedData.wxSign          = {"appId":"wx765455a4f2dabd83","timestamp":1475980485,"nonceStr":"iKkB16ppNelFLbNX","signature":"1d6b98e556f93384f5cea9dde7b4d7908b5f9f02"};
+        injectedData.advertList      = [];
+    </script>
+
+    <script id="__delete_pre_data">
+        var __pre_data = document.getElementById('__pre_data');
+        if (!!__pre_data) {
+            __pre_data.parentNode.removeChild(__pre_data);
+        }
+        var __pre_connect = document.getElementById('__pre_connect');
+        if (!!__pre_connect) {
+            __pre_connect.parentNode.removeChild(__pre_connect);
+        }
+        var __delete_pre_data = document.getElementById('__delete_pre_data');
+        if (!!__delete_pre_data) {
+            __delete_pre_data.parentNode.removeChild(__delete_pre_data);
+        }
+    </script>
+</head>
+<body class="tn-transition-end tn-platform-class">
+
+<div id="shareImage" style="display: none;">
+    <img src="">
+</div>
+
+<div class="tn-reader-paper container" ng-controller="PaperReaderController"
+     tn-scroll-touch="onPaperScroll($event)" tn-scroll-touch-for="document">
+
+    <section class="row tn-board-head" ng-show="displaySystemTitle" ng-cloak>
+        <h3 ng-bind="showInfo.title || '无标题'"></h3>
+        <div class="tn-head-info">
+            <span class="time" ng-bind="showInfo.created_at | date:'yyyy-M-d'"></span>
+            <span class="hor-sep"></span>
+            <span class="brand" ng-bind="showInfo.owner.brand_name"></span>
+        </div>
+
+        <hr/>
+    </section>
+
+    <section class="row tn-board-head-space" ng-show="!displaySystemTitle"></section>
+
+    <div class="loading-progress" ng-show="!isReady">
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+    </div>
+
+    <section class="row tn-article-body" ng-show="isReady" tn-opera-house
+             tn-atom-context="{ type: 'paper', inReader: true, animationEnabled: false }">
+        <article class="dock-loader tn-scene-paper tn-show-root"
+                 tn-solo-comp-loader="cubes[0]"
+                 tn-bind-comp-tpl-id="reader_paper-cp:sys/loader-flow-paper"
+                 tn-comp-role="root" ng-cloak>
+        </article>
+    </section>
+
+    <section class="row tn-board-foot" ng-show="isReady" ng-cloak>
+        <hr/>
+
+        <div class="col-xs-3 text-left no-padding" ng-cloak>
+            阅读 <span ng-bind="hitCount | hitCountText"></span>
+        </div>
+        <div class="col-xs-6 text-center no-padding" ng-cloak>
+            <a class="no-decoration" ng-if="showLogo" href="/follow">
+                由秀米提供技术支持
+            </a>
+        </div>
+        <div class="col-xs-3 text-right no-padding" ng-cloak>
+            <a class="report-button" ng-href="/report/{{showInfo.show_id}}">
+                举报
+            </a>
+        </div>
+    </section>
+
+    <a ng-href="{{ advertItem.target_uri }}" target="_blank">
+        <section class="row tn-board-advert" ng-show="isReady && showAdvert" ng-cloak>
+            <div class="col-xs-12 text-center">
+                <div class="prompt">广告</div>
+            </div>
+            <div class="col-xs-6">
+                <img class="advert-image" ng-src="{{ advertItem.thumb_uri }}">
+            </div>
+            <div class="col-xs-6 text-center">
+                <button type="button" class="btn btn-info">点击查看</button>
+            </div>
+        </section>
+    </a>
+
+</div>
+
+<section class="tn-scripts tn-last-block">
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+    <script src="http://stc.xiumius.com/views/app/reader/05e2ce.ng-tpl.min.js"></script>
+
+    <script type="text/javascript" src="http://stc.xiumius.com/template/v5/paper/comp/reader/ng-tpl.js?_ver=1474637636928"></script>
+
+    <script src="http://stc.xiumius.com/scripts/app/reader/entries/paper/5d5845.main.min.js"></script>
+
+</section>
+
+</body>
+</html>
